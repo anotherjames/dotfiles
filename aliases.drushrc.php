@@ -16,7 +16,7 @@ while ($dir_handle->valid()) {
         'uri' => 'http://' . $basename,
         // A local version of drush for the site will handle being in the
         // webroot subdirectory.
-        'root' => $dir_handle->getPathname(),
+        'root' => $dir_handle->getPathname() . $prefix,
       );
       if (file_exists($dir_handle->getPathname() . '/.php-version')) {
         $php_version = trim(file_get_contents($dir_handle->getPathname() . '/.php-version'));
