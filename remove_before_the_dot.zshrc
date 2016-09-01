@@ -38,3 +38,5 @@ source /opt/boxen/env.sh
 
 COMPOSER="$(which composer)"
 alias composer='$HOME/php_no_xdebug.sh $COMPOSER'
+
+COMPOSER_EXIT_ON_PATCH_FAILURE=1
