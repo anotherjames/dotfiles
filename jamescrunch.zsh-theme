@@ -53,4 +53,5 @@ CRUNCH_PROMPT="$CRUNCH_BRACKET_COLOR➭ "
 #PROMPT="$CRUNCH_TIME_$CRUNCH_DIR_$CRUNCH_PROMPT%{$reset_color%}"
 
 # We now do it like ST's custom steeef.
+# drupal_site is in the oh-my-zsh drush plugin which is patched in anotherjames fork for drush 8.
 PROMPT=$'%{$fg[white]%}{%{$fg[yellow]%}%T%{$fg[white]%}}%{$fg[cyan]%}%~%{$fg_bold[blue]%}$(drupal_site)%{$reset_color%}$(git_prompt_info) %{$fg_bold[yellow]%}$(xdebug_status)%{$fg_no_bold[white]%}➭ %{$reset_color%}'
