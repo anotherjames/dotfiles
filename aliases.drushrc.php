@@ -1,7 +1,7 @@
 <?php
 
 $aliases = array();
-$dir_handle = new DirectoryIterator('/Users/jameswilliams/parrot/sites');
+$dir_handle = new DirectoryIterator(drush_server_home() . '/parrot/sites');
 while ($dir_handle->valid()) {
   if ($dir_handle->isDir() && !$dir_handle->isDot()) {
     // Does this subdirectory contain a Drupal site?
@@ -16,14 +16,17 @@ while ($dir_handle->valid()) {
         'uri' => 'http://' . $basename,
         // A local version of drush for the site will handle being in the
         // webroot subdirectory.
-        'root' => $dir_handle->getPathname() . $prefix,
+        'root' => '/vagrant_sites/' . $basename . '/' . $prefix,
       );
       if (file_exists($dir_handle->getPathname() . '/.php-version')) {
         $php_version = trim(file_get_contents($dir_handle->getPathname() . '/.php-version'));
-        $aliases[$basename]['php'] = '/opt/boxen/phpenv/versions/' . $php_version . '/bin/php';
+        $parts = array_pad(explode('.', $php_version, 3), 3, 0);
+        $aliases[$basename]['php'] = '/user/bin/php' . $parts[0] . '.' . $parts[1];
       }
       if (file_exists($dir_handle->getPathname() . $prefix . '/sites/default/default.services.yml') || file_exists($dir_handle->getPathname() . $prefix . '/sites/default/services.yml')) {
-        $aliases[$basename]['path-aliases'] = array('%drush-script' => 'drush8');
+        $aliases[$basename]['remote-host'] = 'localhost';
+        $aliases[$basename]['remote-user'] = 'vagrant';
+        $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i /Users/jameswilliams/parrot/.vagrant/machines/default/virtualbox/private_key';
       }
     }
   }
