@@ -21,12 +21,15 @@ while ($dir_handle->valid()) {
       if (file_exists($dir_handle->getPathname() . '/.php-version')) {
         $php_version = trim(file_get_contents($dir_handle->getPathname() . '/.php-version'));
         $parts = array_pad(explode('.', $php_version, 3), 3, 0);
-        $aliases[$basename]['php'] = '/user/bin/php' . $parts[0] . '.' . $parts[1];
+        $aliases[$basename]['php'] = '/usr/bin/php' . $parts[0] . '.' . $parts[1];
+      }
+      else {
+        $aliases[$basename]['php'] = '/usr/bin/php';
       }
       if (file_exists($dir_handle->getPathname() . $prefix . '/sites/default/default.services.yml') || file_exists($dir_handle->getPathname() . $prefix . '/sites/default/services.yml')) {
         $aliases[$basename]['remote-host'] = 'localhost';
         $aliases[$basename]['remote-user'] = 'vagrant';
-        $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i /Users/jameswilliams/parrot/.vagrant/machines/default/virtualbox/private_key';
+        $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
       }
     }
   }
