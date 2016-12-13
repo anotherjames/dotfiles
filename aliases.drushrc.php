@@ -23,11 +23,19 @@ while ($dir_handle->valid()) {
         // parrot sites directory (i.e. both on the host machine) can be used.
         'root' => '/vagrant_sites/' . $basename . $prefix,
       );
-      // @TODO Read .parrot-php7 filename instead?
-      if (file_exists($dir_handle->getPathname() . '/.php-version')) {
+
+      // Parrot only supports two php versions. If phpenv was in use, then do
+      // the following instead:
+      /*if (file_exists($dir_handle->getPathname() . '/.php-version')) {
         $php_version = trim(file_get_contents($dir_handle->getPathname() . '/.php-version'));
         $parts = array_pad(explode('.', $php_version, 3), 3, 0);
         $aliases[$basename]['php'] = '/usr/bin/php' . $parts[0] . '.' . $parts[1];
+      }*/
+      if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
+        $aliases[$basename]['php'] = '/usr/bin/php7.0';
+      }
+      else {
+        $aliases[$basename]['php'] = '/usr/bin/php5.6';
       }
 
       $aliases[$basename]['remote-host'] = $basename;
