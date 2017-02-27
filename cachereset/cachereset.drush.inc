@@ -28,10 +28,9 @@ function cachereset_drush_command() {
  */
 function drush_cachereset_cache_reset() {
   if (drush_drupal_major_version() >= 8) {
-    drush_invoke('cache-rebuild');
+    drush_invoke_process('@self', 'cache-rebuild');
   }
   else {
-    drush_bootstrap_to_phase(DRUSH_BOOTSTRAP_MAX);
-    drush_invoke('cache-clear', array('all'));
+    drush_invoke_process('@self', 'cache-clear', array('all'));
   }
 }
