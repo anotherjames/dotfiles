@@ -1,5 +1,7 @@
 <?php
 
+$debug_locally = TRUE;
+
 $aliases = array();
 $dir_handle = new DirectoryIterator(drush_server_home() . '/parrot/sites');
 $global_drush_match = NULL;
@@ -31,39 +33,41 @@ while ($dir_handle->valid()) {
         $parts = array_pad(explode('.', $php_version, 3), 3, 0);
         $aliases[$basename]['php'] = '/usr/bin/php' . $parts[0] . '.' . $parts[1];
       }*/
-      if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
-        $aliases[$basename]['php'] = '/usr/bin/php7.0';
-      }
-      else {
-        $aliases[$basename]['php'] = '/usr/bin/php5.6';
-      }
+      if (!$debug_locally) {
+        if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
+          $aliases[$basename]['php'] = '/usr/bin/php7.0';
+        }
+        else {
+          $aliases[$basename]['php'] = '/usr/bin/php5.6';
+        }
 
-      $aliases[$basename]['remote-host'] = $basename;
-      $aliases[$basename]['remote-user'] = 'vagrant';
-      // Without this local option, commands are called twice. Reported at
-      // https://github.com/drush-ops/drush/issues/1870.
-      $aliases[$basename]['local'] = TRUE;
-      $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
-      if (file_exists($dir_handle->getPathname() . '/vendor/drush/drush/drush.launcher')) {
-        $aliases[$basename]['path-aliases']['%drush-script'] = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.launcher';
-        $drush_info_file = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.info';
-        if (!$global_drush_match && file_exists($drush_info_file)) {
-          $drush_info = parse_ini_file($drush_info_file);
-          if (isset($drush_info['drush_version'])) {
-            if ($drush_info['drush_version'] == $global_drush_version) {
-              $global_drush_match = $basename;
-            }
-            else {
-              $drushes[$basename] = explode('.', $drush_info['drush_version']);
+        $aliases[$basename]['remote-host'] = $basename;
+        $aliases[$basename]['remote-user'] = 'vagrant';
+        // Without this local option, commands are called twice. Reported at
+        // https://github.com/drush-ops/drush/issues/1870.
+        $aliases[$basename]['local'] = TRUE;
+        $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
+        if (file_exists($dir_handle->getPathname() . '/vendor/drush/drush/drush.launcher')) {
+          $aliases[$basename]['path-aliases']['%drush-script'] = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.launcher';
+          $drush_info_file = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.info';
+          if (!$global_drush_match && file_exists($drush_info_file)) {
+            $drush_info = parse_ini_file($drush_info_file);
+            if (isset($drush_info['drush_version'])) {
+              if ($drush_info['drush_version'] == $global_drush_version) {
+                $global_drush_match = $basename;
+              }
+              else {
+                $drushes[$basename] = explode('.', $drush_info['drush_version']);
+              }
             }
           }
         }
-      }
-      // The global drush script (at /usr/local/bin/drush) does not seem to
-      // respect the php version. So try to use a drush launcher from elsewhere,
-      // ideally matching the global version.
-      elseif (!empty($aliases[$basename]['php'])) {
-        $find_drush_script[] = $basename;
+        // The global drush script (at /usr/local/bin/drush) does not seem to
+        // respect the php version. So try to use a drush launcher from elsewhere,
+        // ideally matching the global version.
+        elseif (!empty($aliases[$basename]['php'])) {
+          $find_drush_script[] = $basename;
+        }
       }
     }
   }
