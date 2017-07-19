@@ -1,5 +1,9 @@
 <?php
 
+// Set this to TRUE to be able to use xdebug with local drush files. Or FALSE to
+// run inside parrot.
+$run_locally = FALSE;
+
 $aliases = array();
 $dir_handle = new DirectoryIterator(drush_server_home() . '/parrot/sites');
 $global_drush_match = NULL;
@@ -17,53 +21,88 @@ while ($dir_handle->valid()) {
     if (file_exists($dir_handle->getPathname() . $prefix . '/sites/default/default.settings.php') || file_exists($dir_handle->getPathname() . $prefix . '/sites/default/settings.php')) {
       $basename = $dir_handle->getBasename();
       $aliases[$basename] = array(
-        'uri' => 'http://' . $basename,
+        'uri' => 'https://' . $basename,
         // A local version of drush for the site will handle being in the
         // webroot subdirectory. A symlink from /vagrant_sites pointing to the
         // parrot sites directory (i.e. both on the host machine) can be used.
         'root' => '/vagrant_sites/' . $basename . $prefix,
       );
 
-      // Parrot only supports two php versions. If phpenv was in use, then do
-      // the following instead:
-      /*if (file_exists($dir_handle->getPathname() . '/.php-version')) {
-        $php_version = trim(file_get_contents($dir_handle->getPathname() . '/.php-version'));
-        $parts = array_pad(explode('.', $php_version, 3), 3, 0);
-        $aliases[$basename]['php'] = '/usr/bin/php' . $parts[0] . '.' . $parts[1];
-      }*/
-      if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
-        $aliases[$basename]['php'] = '/usr/bin/php7.0';
+      if ($run_locally) {
+        // Still need to get the right version of PHP, but use phpenv if running
+        // locally. Unset phpenv's environment variable so that running
+        // `phpenv which php` returns the appropriate php script for this site
+        // (otherwise it just returns the one set by the environment variable
+        // for this php request).
+        $phpenv_ev = getenv('PHPENV_VERSION');
+        if ($phpenv_ev !== FALSE) {
+          // This unsets the current PHPENV_VERSION environment variable.
+          putenv('PHPENV_VERSION');
+        }
+        drush_shell_cd_and_exec($dir_handle->getPathname(), 'phpenv which php');
+        $php_env_output = drush_shell_exec_output();
+        if ($phpenv_ev !== FALSE) {
+          putenv('PHPENV_VERSION=' . $phpenv_ev);
+        }
+        if (isset($php_env_output[2]) && file_exists($php_env_output[2])) {
+          $aliases[$basename]['php'] = $php_env_output[2];
+          // Without this local option, commands are called twice. Reported at
+          // https://github.com/drush-ops/drush/issues/1870.
+          // @TODO Any that can 'handle-remote-commands' (e.g. uli) will still
+          // run twice.
+          $aliases[$basename]['local'] = TRUE;
+          // However, the local flag stops this alias file from being loaded &
+          // used when an alias is in use, which then throws an error because
+          // the alias cannot be found. Setting a remote-host ensures a
+          // redispatch with the right details for the alias.
+          $aliases[$basename]['remote-host'] = 'localhost';
+        }
       }
       else {
-        $aliases[$basename]['php'] = '/usr/bin/php5.6';
+        // Parrot only supports two php versions.
+        if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
+          $aliases[$basename]['php'] = '/usr/bin/php7.0';
+        }
+        else {
+          $aliases[$basename]['php'] = '/usr/bin/php5.6';
+        }
+
+        $aliases[$basename]['remote-host'] = $basename;
+        $aliases[$basename]['remote-user'] = 'vagrant';
+        // Without this local option, commands are called twice. Reported at
+        // https://github.com/drush-ops/drush/issues/1870.
+        $aliases[$basename]['local'] = TRUE;
+        $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
       }
 
-      $aliases[$basename]['remote-host'] = $basename;
-      $aliases[$basename]['remote-user'] = 'vagrant';
-      // Without this local option, commands are called twice. Reported at
-      // https://github.com/drush-ops/drush/issues/1870.
-      $aliases[$basename]['local'] = TRUE;
-      $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
-      if (file_exists($dir_handle->getPathname() . '/vendor/drush/drush/drush.launcher')) {
-        $aliases[$basename]['path-aliases']['%drush-script'] = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.launcher';
-        $drush_info_file = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.info';
-        if (!$global_drush_match && file_exists($drush_info_file)) {
-          $drush_info = parse_ini_file($drush_info_file);
-          if (isset($drush_info['drush_version'])) {
-            if ($drush_info['drush_version'] == $global_drush_version) {
-              $global_drush_match = $basename;
-            }
-            else {
-              $drushes[$basename] = explode('.', $drush_info['drush_version']);
+      // @TODO Use the right version of drush when running locally too, if
+      // possible. However, at the moment, setting the %drush-script bit stops
+      // the alias file actually being loaded, so the alias cannot be found.
+      // This is because a redispatch will happen to use the specified drush
+      // script at an early stage, which will have the 'local' flag set as
+      // above, before the actually using the remote-host bit.
+      if (!$run_locally) {
+        if (file_exists($dir_handle->getPathname() . '/vendor/drush/drush/drush.launcher')) {
+          $aliases[$basename]['path-aliases']['%drush-script'] = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.launcher';
+          $drush_info_file = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.info';
+          if (!$global_drush_match && file_exists($drush_info_file)) {
+            $drush_info = parse_ini_file($drush_info_file);
+            if (isset($drush_info['drush_version'])) {
+              if ($drush_info['drush_version'] == $global_drush_version) {
+                $global_drush_match = $basename;
+              }
+              else {
+                $drushes[$basename] = explode('.', $drush_info['drush_version']);
+              }
             }
           }
         }
-      }
-      // The global drush script (at /usr/local/bin/drush) does not seem to
-      // respect the php version. So try to use a drush launcher from elsewhere,
-      // ideally matching the global version.
-      elseif (!empty($aliases[$basename]['php'])) {
-        $find_drush_script[] = $basename;
+        // The global drush script (at /usr/local/bin/drush) does not seem to
+        // respect the php version. So try to use a drush launcher from
+        // elsewhere, ideally matching the global version.
+        elseif (!empty($aliases[$basename]['php'])) {
+          $find_drush_script[] = $basename;
+        }
       }
     }
   }
