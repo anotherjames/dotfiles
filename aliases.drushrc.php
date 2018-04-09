@@ -48,22 +48,29 @@ while ($dir_handle->valid()) {
           }
           if (isset($php_env_output[2]) && file_exists($php_env_output[2])) {
             $aliases[$basename]['php'] = $php_env_output[2];
-            // Without this local option, commands are called twice. Reported at
-            // https://github.com/drush-ops/drush/issues/1870.
-            // @TODO Any that can 'handle-remote-commands' (e.g. uli) will still
-            // run twice.
-            $aliases[$basename]['local'] = TRUE;
-            // However, the local flag stops this alias file from being loaded &
-            // used when an alias is in use, which then throws an error because
-            // the alias cannot be found. Setting a remote-host ensures a
-            // redispatch with the right details for the alias.
-            $aliases[$basename]['remote-host'] = 'localhost';
+
+            // Any commands that can 'handle-remote-commands' (e.g. uli) can be
+            // run as they are. Otherwise, tweak some options (see comments).
+            $command = drush_parse_command();
+            if (!is_array($command) || empty($command['handle-remote-commands'])) {
+              // Without this local option, commands are called twice. Reported
+              // at https://github.com/drush-ops/drush/issues/1870.
+              $aliases[$basename]['local'] = TRUE;
+              // However, the local flag stops this alias file from being loaded
+              // & used when an alias is in use, which then throws an error
+              // because the alias cannot be found. Setting a remote-host
+              // ensures a redispatch with the right details for the alias.
+              $aliases[$basename]['remote-host'] = 'localhost';
+            }
           }
         }
         else {
-          // Parrot only supports two php versions.
-          if (file_exists($dir_handle->getPathname() . '/.parrot-php7')) {
+          // Assume newer version of parrot that can run PHP 7.0 or 7.1.
+          if (file_exists($dir_handle->getPathname() . '/.parrot-php7.0')) {
             $aliases[$basename]['php'] = '/usr/bin/php7.0';
+          }
+          elseif (file_exists($dir_handle->getPathname() . '/.parrot-php7') || file_exists($dir_handle->getPathname() . '/.parrot-php7.1')) {
+            $aliases[$basename]['php'] = '/usr/bin/php7.1';
           }
           else {
             $aliases[$basename]['php'] = '/usr/bin/php5.6';
@@ -76,12 +83,14 @@ while ($dir_handle->valid()) {
           $aliases[$basename]['local'] = TRUE;
           $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
 
+          // Use the right version of drush when running inside parrot.
           // @TODO Use the right version of drush when running locally too, if
-          // possible. However, at the moment, setting the %drush-script bit stops
-          // the alias file actually being loaded, so the alias cannot be found.
-          // This is because a redispatch will happen to use the specified drush
-          // script at an early stage, which will have the 'local' flag set as
-          // above, before the actually using the remote-host bit.
+          // possible. However, at the moment, setting the %drush-script bit
+          // stops the alias file actually being loaded, so the alias cannot be
+          // found. This is because a redispatch will happen to use the
+          // specified drush script at an early stage, which will have the
+          // 'local' flag set as above, before the actually using the
+          // remote-host bit.
           if (file_exists($dir_handle->getPathname() . '/vendor/drush/drush/drush.launcher')) {
             $aliases[$basename]['path-aliases']['%drush-script'] = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.launcher';
             $drush_info_file = '/vagrant_sites/' . $basename . '/vendor/drush/drush/drush.info';
