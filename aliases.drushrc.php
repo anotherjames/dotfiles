@@ -2,15 +2,66 @@
 
 // Set this to TRUE to be able to use xdebug with local drush files. Or FALSE to
 // run inside parrot.
-$run_locally = TRUE;
-$advanced = FALSE;
+$advanced = TRUE;
+$run_locally = $advanced && TRUE;
 
 $aliases = array();
-$dir_handle = new DirectoryIterator(drush_server_home() . '/parrot/sites');
+$home_dir = drush_server_home();
+$dir_handle = new DirectoryIterator($home_dir . '/parrot/sites');
 $global_drush_match = NULL;
 $global_drush_version = explode('.', '8.1.2');
 $find_drush_script = array();
 $drushes = array();
+$include_paths = array();
+$command_can_run_remotely = FALSE;
+$phpenv_ev = getenv('PHPENV_VERSION');
+
+if ($advanced && $run_locally) {
+  // To get the right version of PHP, unset phpenv's environment variable so
+  // that running `phpenv which php` returns the appropriate php script for this
+  // site (otherwise it just returns the one set by the environment variable for
+  // this php request). It will be restored after setting up all the aliases.
+  if ($phpenv_ev !== FALSE) {
+    // This unsets the current PHPENV_VERSION environment variable.
+    putenv('PHPENV_VERSION');
+  }
+
+  // @TODO I suspect calling this so early is why I have to clear drush's cache
+  // between projects maybe? Can we clear whatever static caches it builds after
+  // running through this? e.g. with drush_get_commands(TRUE). However, drush
+  // might clear it anyway between bootstrap phases so maybe that's unnecessary.
+  $command = drush_parse_command();
+
+  // Any commands that can 'handle-remote-commands' (e.g. uli) can be
+  // run as they are. Otherwise, tweak some options (see comments).
+  if (is_array($command) && !empty($command['handle-remote-commands'])) {
+    $command_can_run_remotely = TRUE;
+  }
+  // When running locally, _drush_find_commandfiles_drush() will not look for
+  // commands in all the normal places. Pass include paths along for dispatches.
+  else {
+    // User commands, specified by 'include' option
+    $include = drush_get_context('DRUSH_INCLUDE', array());
+    foreach ($include as $path) {
+      if (is_dir($path)) {
+        $include_paths[] = $path;
+      }
+    }
+
+    // System commands, residing in $SHARE_PREFIX/share/drush/commands
+    $share_path = drush_get_context('DRUSH_SITE_WIDE_COMMANDFILES');
+    if (is_dir($share_path)) {
+      $include_paths[] = $share_path;
+    }
+
+    // User commands, residing in ~/.drush
+    $per_user_config_dir = drush_get_context('DRUSH_PER_USER_CONFIGURATION');
+    if (!empty($per_user_config_dir)) {
+      $include_paths[] = $per_user_config_dir;
+    }
+  }
+}
+
 while ($dir_handle->valid()) {
   if ($dir_handle->isDir() && !$dir_handle->isDot()) {
     // Does this subdirectory contain a Drupal site?
@@ -31,28 +82,14 @@ while ($dir_handle->valid()) {
 
       if ($advanced) {
         if ($run_locally) {
-          // Still need to get the right version of PHP, but use phpenv if running
-          // locally. Unset phpenv's environment variable so that running
-          // `phpenv which php` returns the appropriate php script for this site
-          // (otherwise it just returns the one set by the environment variable
-          // for this php request).
-          $phpenv_ev = getenv('PHPENV_VERSION');
-          if ($phpenv_ev !== FALSE) {
-            // This unsets the current PHPENV_VERSION environment variable.
-            putenv('PHPENV_VERSION');
-          }
           drush_shell_cd_and_exec($dir_handle->getPathname(), 'phpenv which php');
           $php_env_output = drush_shell_exec_output();
-          if ($phpenv_ev !== FALSE) {
-            putenv('PHPENV_VERSION=' . $phpenv_ev);
-          }
           if (isset($php_env_output[2]) && file_exists($php_env_output[2])) {
             $aliases[$basename]['php'] = $php_env_output[2];
 
             // Any commands that can 'handle-remote-commands' (e.g. uli) can be
             // run as they are. Otherwise, tweak some options (see comments).
-            $command = drush_parse_command();
-            if (!is_array($command) || empty($command['handle-remote-commands'])) {
+            if (!$command_can_run_remotely) {
               // Without this local option, commands are called twice. Reported
               // at https://github.com/drush-ops/drush/issues/1870.
               $aliases[$basename]['local'] = TRUE;
@@ -61,6 +98,10 @@ while ($dir_handle->valid()) {
               // because the alias cannot be found. Setting a remote-host
               // ensures a redispatch with the right details for the alias.
               $aliases[$basename]['remote-host'] = 'localhost';
+
+              if ($include_paths) {
+                $aliases[$basename]['include'] = $include_paths;
+              }
             }
           }
         }
@@ -81,7 +122,7 @@ while ($dir_handle->valid()) {
           // Without this local option, commands are called twice. Reported at
           // https://github.com/drush-ops/drush/issues/1870.
           $aliases[$basename]['local'] = TRUE;
-          $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . drush_server_home() . '/parrot/.vagrant/machines/default/virtualbox/private_key';
+          $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . $home_dir . '/parrot/.vagrant/machines/default/virtualbox/private_key';
 
           // Use the right version of drush when running inside parrot.
           // @TODO Use the right version of drush when running locally too, if
@@ -117,6 +158,12 @@ while ($dir_handle->valid()) {
     }
   }
   $dir_handle->next();
+}
+
+if ($advanced && $run_locally) {
+  if ($phpenv_ev !== FALSE) {
+    putenv('PHPENV_VERSION=' . $phpenv_ev);
+  }
 }
 
 if ($find_drush_script) {
