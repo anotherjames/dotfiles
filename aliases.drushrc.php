@@ -1,9 +1,9 @@
 <?php
 
+$advanced = TRUE;
 // Set this to TRUE to be able to use xdebug with local drush files. Or FALSE to
 // run inside parrot.
-$advanced = TRUE;
-$run_locally = $advanced && TRUE;
+$run_locally = FALSE && $advanced;
 
 $aliases = array();
 $home_dir = drush_server_home();
@@ -26,10 +26,9 @@ if ($advanced && $run_locally) {
     putenv('PHPENV_VERSION');
   }
 
-  // @TODO I suspect calling this so early is why I have to clear drush's cache
-  // between projects maybe? Can we clear whatever static caches it builds after
-  // running through this? e.g. with drush_get_commands(TRUE). However, drush
-  // might clear it anyway between bootstrap phases so maybe that's unnecessary.
+  // @TODO Calling this so early will mean the command is parsed earlier than is
+  // ideal. The commands static cache is reset at the end of this file to allow
+  // sites to check/parse commands again, but I'm not sure this is ideal.
   $command = drush_parse_command();
 
   // Any commands that can 'handle-remote-commands' (e.g. uli) can be
@@ -166,6 +165,8 @@ if ($advanced && $run_locally) {
   }
 }
 
+// In order for Drush to respect the passed PHP version, we have to directly
+// call a drush.launcher file rather than parrot's global drush.
 if ($find_drush_script) {
   if (!$global_drush_match) {
     if ($drushes) {
@@ -188,9 +189,32 @@ if ($find_drush_script) {
             continue;
           }
         }
+      }
+
+      // An exact match was still not found. Use the closest, preferably newer,
+      // version that has a launcher file instead.
+      if (!$global_drush_match) {
+        $patch_versions = array(
+          $global_drush_version[2] => 'global',
+        );
+        foreach ($drushes as $basename => $candidate) {
+          $patch_version = $candidate[2];
+          $patch_versions[$patch_version] = $basename;
+        }
+        ksort($patch_versions, SORT_NUMERIC);
+
+        $patch_versions_keys = array_keys($patch_versions);
+        $patch_versions_basenames = array_values($patch_versions);
+
+        $pos = array_search('global', $patch_versions_basenames);
+        // If there are newer versions of drush available, use the oldest of the
+        // newer ones (i.e. closest to the global drush version).
+        if ($pos < (count($patch_versions) - 1)) {
+          $global_drush_match = $patch_versions_basenames[$pos+1];
+        }
+        // If there are only older versions of drush available, use the newest.
         else {
-          // @TODO An exact match was not found. Use the closest, preferably
-          // newer, version instead.
+          $global_drush_match = $patch_versions_basenames[$pos-1];
         }
       }
     }
@@ -216,3 +240,7 @@ foreach ($aliases as $name => $definition) {
 $aliases['all'] = array(
   'site-list' => $all,
 );
+
+if ($advanced && $run_locally) {
+  drush_get_commands(TRUE);
+}
