@@ -15,7 +15,7 @@
 
 # Some handy debugging-like characters: ͯϞϟϰЖжѪѫӜӝӫӪ⍾
 function xdebug_status {
-    [ $XDEBUG_CONFIG ] && echo 'ϟ '
+    [ ! -z "${XDEBUG_CONFIG+set}" ] && echo 'ϟ '
 }
 
 CRUNCH_BRACKET_COLOR="%{$fg[white]%}"

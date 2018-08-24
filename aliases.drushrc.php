@@ -1,9 +1,10 @@
 <?php
 
 $advanced = TRUE;
+$debugging = extension_loaded('xdebug') && array_key_exists('XDEBUG_CONFIG', $_SERVER);
 // Set this to TRUE to be able to use xdebug with local drush files. Or FALSE to
 // run inside parrot.
-$run_locally = FALSE && $advanced;
+$run_locally = $debugging && $advanced;
 
 $aliases = array();
 $home_dir = drush_server_home();
