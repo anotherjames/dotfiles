@@ -16,6 +16,7 @@ $drushes = array();
 $include_paths = array();
 $command_can_run_remotely = FALSE;
 $phpenv_ev = getenv('PHPENV_VERSION');
+$remote_username = 'vagrant';
 
 if ($advanced && $run_locally) {
   // To get the right version of PHP, unset phpenv's environment variable so
@@ -118,11 +119,19 @@ while ($dir_handle->valid()) {
           }
 
           $aliases[$basename]['remote-host'] = $basename;
-          $aliases[$basename]['remote-user'] = 'vagrant';
+          $aliases[$basename]['remote-user'] = $remote_username;
           // Without this local option, commands are called twice. Reported at
           // https://github.com/drush-ops/drush/issues/1870.
           $aliases[$basename]['local'] = TRUE;
           $aliases[$basename]['ssh-options'] = '-o PasswordAuthentication=no -p 2222 -i ' . $home_dir . '/parrot/.vagrant/machines/default/virtualbox/private_key';
+
+          // Since local is set to TRUE, we do need to include command locations
+          // that would not otherwise be included. This is the equivalent of
+          // drush_get_context('DRUSH_PER_USER_CONFIGURATION') which is included
+          // when running locally. We could include the equivalent of
+          // drush_get_context('DRUSH_SITE_WIDE_COMMANDFILES') too, but there's
+          // nothing there anyway (AFAIK).
+          $aliases[$basename]['include'] = array('/home/' . $remote_username . '/.drush/');
 
           // Use the right version of drush when running inside parrot.
           // @TODO Use the right version of drush when running locally too, if
