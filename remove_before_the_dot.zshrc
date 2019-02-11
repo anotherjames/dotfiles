@@ -33,7 +33,19 @@ plugins=(git compleat deb git-flow extract history-substring-search last-working
 
 source $ZSH/oh-my-zsh.sh
 
+# Not sure which of these is correct!
+unsetopt correct
+DISABLE_CORRECTION="true"
+setopt nocorrectall
+unsetopt correct_all
+
 # Customize to your needs...
-source /opt/boxen/env.sh
+export PATH=$HOME/.phpenv/bin:$HOME/.phpenv/plugins/php-build/bin:$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
+
+eval "$(rbenv init -)"
+eval "$(phpenv init -)"
+eval "$(nodenv init -)"
+
+export PATH=bin:./node_modules/.bin:$HOME/.composer/vendor/bin:$PATH
 
 COMPOSER_EXIT_ON_PATCH_FAILURE=1
