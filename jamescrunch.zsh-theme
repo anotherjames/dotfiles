@@ -52,6 +52,27 @@ CRUNCH_PROMPT="$CRUNCH_BRACKET_COLOR➭ "
 #PROMPT="$CRUNCH_TIME_$CRUNCH_RVM_$CRUNCH_DIR_$CRUNCH_PROMPT%{$reset_color%}"
 #PROMPT="$CRUNCH_TIME_$CRUNCH_DIR_$CRUNCH_PROMPT%{$reset_color%}"
 
+# From https://github.com/drush-ops/drush/blob/e03a3ef04f559f7ec00df637b4035e09c9cf389e/drush.complete.sh#L18
+# which I just couldn't get to work out of the box :-(
+__drush_ps1() {
+  f="${TMPDIR:-/tmp/}/drush-env-${USER}/drush-drupal-site-$$"
+  if [ -f $f ]
+  then
+    __DRUPAL_SITE=$(cat "$f")
+  else
+    __DRUPAL_SITE="$DRUPAL_SITE"
+  fi
+
+  # Set DRUSH_PS1_SHOWCOLORHINTS to a non-empty value and define a
+  # __drush_ps1_colorize_alias() function for color hints in your Drush PS1
+  # prompt. See example.prompt.sh for an example implementation.
+  if [ -n "${__DRUPAL_SITE-}" ] && [ -n "${DRUSH_PS1_SHOWCOLORHINTS-}" ]; then
+    __drush_ps1_colorize_alias
+  fi
+
+  [[ -n "$__DRUPAL_SITE" ]] && printf "${1:- (%s)}" "$__DRUPAL_SITE"
+}
+
 # We now do it like ST's custom steeef.
 # drupal_site is in the oh-my-zsh drush plugin which is patched in anotherjames fork for drush 8.
-PROMPT=$'%{$fg[white]%}{%{$fg[yellow]%}%T%{$fg[white]%}}%{$fg[cyan]%}%~%{$fg_bold[blue]%}$(drupal_site)%{$reset_color%}$(git_prompt_info) %{$fg_bold[yellow]%}$(xdebug_status)%{$fg_no_bold[white]%}➭ %{$reset_color%}'
+PROMPT=$'%{$fg[white]%}{%{$fg[yellow]%}%T%{$fg[white]%}}%{$fg[cyan]%}%~%{$fg_bold[blue]%}$(__drush_ps1)%{$reset_color%}$(git_prompt_info) %{$fg_bold[yellow]%}$(xdebug_status)%{$fg_no_bold[white]%}➭ %{$reset_color%}'
