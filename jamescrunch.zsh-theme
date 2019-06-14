@@ -74,5 +74,5 @@ __drush_ps1() {
 }
 
 # We now do it like ST's custom steeef.
-# drupal_site is in the oh-my-zsh drush plugin which is patched in anotherjames fork for drush 8.
+# drupal_site is in the official oh-my-zsh drush plugin.
 PROMPT=$'%{$fg[white]%}{%{$fg[yellow]%}%T%{$fg[white]%}}%{$fg[cyan]%}%~%{$fg_bold[blue]%}$(__drush_ps1)%{$reset_color%}$(git_prompt_info) %{$fg_bold[yellow]%}$(xdebug_status)%{$fg_no_bold[white]%}➭ %{$reset_color%}'
