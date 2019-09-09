@@ -1,10 +1,39 @@
 PHPStorm scopes & colours:
 
 Custom #007F00
-((file:profiles/PROFILEDIR||file:profiles/PROFILEDIR/themes/custom||file:profiles/PROFILEDIR/themes/custom//*||file:profiles/PROFILEDIR/modules/custom||file:profiles/PROFILEDIR/modules/custom//*||file:profiles/PROFILEDIR//*)&&!(file:profiles/PROFILEDIR/modules/contrib//*||file:profiles/PROFILEDIR/themes/contrib//*||file:profiles/PROFILEDIR/modules/development//*)&&!file:profiles/**/libraries//*)||(file:sites/sites.php||file:sites/all/patchedmodules.make||file:sites/all/modules/custom//*||file:sites/all/modules/custom||file:sites/all/themes/custom//*||file:sites/all/themes/custom||file:sites/SITEDIR||file:sites/SITEDIR//*&&!(file:sites/SITEDIR/modules/stage_file_proxy||file:sites/SITEDIR/modules/stage_file_proxy//*||file:sites/all/modules/custom/devnull||file:sites/all/modules/custom/devnull//*))
+((file:profiles/PROFILEDIR
+file:profiles/PROFILEDIR/themes/custom
+file:profiles/PROFILEDIR/themes/custom//*
+file:profiles/PROFILEDIR/modules/custom
+file:profiles/PROFILEDIR/modules/custom//*
+file:profiles/PROFILEDIR//*)&&!(file:profiles/PROFILEDIR/modules/contrib//*
+file:profiles/PROFILEDIR/themes/contrib//*
+file:profiles/PROFILEDIR/modules/development//*)&&!file:profiles/**/libraries//*)
+(file:sites/sites.php
+file:sites/all/patchedmodules.make
+file:sites/all/modules/custom//*
+file:sites/all/modules/custom
+file:sites/all/themes/custom//*
+file:sites/all/themes/custom
+file:sites/SITEDIR
+file:sites/SITEDIR//*&&!(file:sites/SITEDIR/modules/stage_file_proxy
+file:sites/SITEDIR/modules/stage_file_proxy//*
+file:sites/all/modules/custom/devnull
+file:sites/all/modules/custom/devnull//*))
 
 Contrib #7F3F00
-(file:profiles/PROFILEDIR/themes/contrib//*||file:profiles/PROFILEDIR/modules/contrib//*||file:profiles/PROFILEDIR/modules/development//*||file:profiles/PROFILEDIR/themes/contrib||file:profiles/PROFILEDIR/modules/contrib||file:profiles/**/libraries//*)||(file:sites/SITEDIR/modules/stage_file_proxy||file:sites/SITEDIR/modules/stage_file_proxy//*||file:sites/all//*||file:sites/all/modules/custom/devnull||file:sites/all/modules/custom/devnull//*&&!(file:sites/all/modules/custom||file:sites/all/modules/custom//*))
+(file:profiles/PROFILEDIR/themes/contrib//*
+file:profiles/PROFILEDIR/modules/contrib//*
+file:profiles/PROFILEDIR/modules/development//*
+file:profiles/PROFILEDIR/themes/contrib
+file:profiles/PROFILEDIR/modules/contrib
+file:profiles/**/libraries//*)
+(file:sites/SITEDIR/modules/stage_file_proxy
+file:sites/SITEDIR/modules/stage_file_proxy//*
+file:sites/all//*
+file:sites/all/modules/custom/devnull
+file:sites/all/modules/custom/devnull//*&&!(file:sites/all/modules/custom
+file:sites/all/modules/custom//*))
 
 Core #007F7F
 file:*/&&!file:offline//*&&!file:.idea//*&&!file:profiles/PROFILEDIR//*&&!file:sites//*
@@ -15,34 +44,116 @@ file:sites//*
 Non-project #7F7F7F
 
 Booking system #204080 (lowest scope, highest colour)
-file:sites/all/modules/custom/booking_system//*||file:sites/all/modules/custom/booking_system
+file:sites/all/modules/custom/booking_system//*
+file:sites/all/modules/custom/booking_system
 
 ===================
 
 D8:
 
 Tests (Drupal & dependencies) #40495F
-file:webroot/*/Tests//*||file:webroot/*/Tests||file:webroot/*/tests//*||file:webroot/*/tests||file:webroot/*/Test//*||file:webroot/*/Test||file:webroot/*/test//*||file:webroot/*/test&&!file:webroot/libraries//*||file:vendor/*/Tests//*||file:vendor/*/Tests
+file:webroot/*/Tests//*
+file:webroot/*/Tests
+file:webroot/*/tests//*
+file:webroot/*/tests
+file:webroot/*/Test//*
+file:webroot/*/Test
+file:webroot/*/test//*
+file:webroot/*/test&&!file:webroot/libraries//*
+file:vendor/*/Tests//*
+file:vendor/*/Tests
 
 Custom #007F00
-(file:webroot/profiles/PROFILEDIR/themes/custom//*||file:webroot/profiles/PROFILEDIR/modules/custom//*||file:webroot/profiles/PROFILEDIR//*||file:webroot/profiles/PROFILEDIR||file:*||file:drush/*||file:patches//*||file:docker//*||file:jenkins//*||file:scripts//*||file:webroot/modules/custom||file:webroot/modules/custom//*||file:webroot/themes/custom||file:webroot/themes/custom//*||file:vendor/computerminds||file:vendor/computerminds//*||file:webroot/modules/contrib/cm_*||file:webroot/modules/contrib/cm_*//*||file:webroot/modules/cm_*||file:webroot/modules/cm_*//*)&&!(file:webroot/profiles/PROFILEDIR/modules/contrib//*||file:webroot/profiles/PROFILEDIR/themes/contrib//*||file:webroot/profiles/PROFILEDIR/modules/development//*||file:webroot/profiles/**/libraries//*||file:drush/contrib||file:vendor)
+(file:webroot/profiles/PROFILEDIR/themes/custom//*
+file:webroot/profiles/PROFILEDIR/modules/custom//*
+file:webroot/profiles/PROFILEDIR//*
+file:webroot/profiles/PROFILEDIR
+file:*
+file:drush/*
+file:patches//*
+file:docker//*
+file:jenkins//*
+file:scripts//*
+file:webroot/modules/custom
+file:webroot/modules/custom//*
+file:webroot/themes/custom
+file:webroot/themes/custom//*
+file:vendor/computerminds
+file:vendor/computerminds//*
+file:webroot/modules/contrib/cm_*
+file:webroot/modules/contrib/cm_*//*
+file:webroot/modules/cm_*
+file:webroot/modules/cm_*//*)&&!(file:webroot/profiles/PROFILEDIR/modules/contrib//*
+file:webroot/profiles/PROFILEDIR/themes/contrib//*
+file:webroot/profiles/PROFILEDIR/modules/development//*
+file:webroot/profiles/**/libraries//*
+file:drush/contrib
+file:vendor)
+
 
 Contrib #7F3F00
-(file:webroot/modules//*||file:webroot/themes//*||file:webroot/profiles//*||file:drush/contrib||file:drush/contrib//*)&&!((file:webroot/profiles/PROFILEDIR||file:webroot/profiles/PROFILEDIR//*)&&!(file:webroot/profiles/PROFILEDIR/themes/contrib//*||file:webroot/profiles/PROFILEDIR/modules/contrib//*||file:webroot/profiles/PROFILEDIR/modules/development//*||file:webroot/profiles/PROFILEDIR/themes/contrib//*)&&!(file:webroot/modules/custom||file:webroot/modules/custom//*||file:webroot/themes/custom||file:webroot/themes/custom//*))
+(file:webroot/modules//*
+file:webroot/themes//*
+file:webroot/profiles//*
+file:drush/contrib
+file:drush/contrib//*)&&!((file:webroot/profiles/PROFILEDIR
+file:webroot/profiles/PROFILEDIR//*)&&!(file:webroot/profiles/PROFILEDIR/themes/contrib//*
+file:webroot/profiles/PROFILEDIR/modules/contrib//*
+file:webroot/profiles/PROFILEDIR/modules/development//*
+file:webroot/profiles/PROFILEDIR/themes/contrib//*)&&!(file:webroot/modules/custom
+file:webroot/modules/custom//*
+file:webroot/themes/custom
+file:webroot/themes/custom//*))
 
 Core #007F7F
-(file:webroot/core//*||file:webroot/*&&!file:webroot/libraries&&!file:webroot/sites&&!file:webroot/vendor)&&!(file:webroot/*/Tests//*||file:webroot/*/Tests||file:webroot/*/tests//*||file:webroot/*/tests||file:webroot/*/Test//*||file:webroot/*/Test||file:webroot/*/test//*||file:webroot/*/test)
+(file:webroot/core//*
+file:webroot/*&&!file:webroot/libraries&&!file:webroot/sites&&!file:webroot/vendor)&&!(file:webroot/*/Tests//*
+file:webroot/*/Tests
+file:webroot/*/tests//*
+file:webroot/*/tests
+file:webroot/*/Test//*
+file:webroot/*/Test
+file:webroot/*/test//*
+file:webroot/*/test)
 
 Sites #808000
-file:webroot/sites//*||file:webroot/sites
+file:webroot/sites//*
+file:webroot/sites
 
 Key Drupal libraries #204080
-(file:vendor/symfony//*||file:vendor/symfony-cmf//*||file:vendor/twig//*||file:vendor/guzzlehttp//*||file:vendor/symfony||file:vendor/symfony-cmf||file:vendor/twig||file:vendor/guzzlehttp)&&!(file:webroot/*/Tests//*||file:webroot/*/Tests||file:webroot/*/tests//*||file:webroot/*/tests||file:webroot/*/Test//*||file:webroot/*/Test||file:webroot/*/test//*||file:webroot/*/test&&!file:webroot/libraries//*||file:vendor/*/Tests//*||file:vendor/*/Tests)
+(file:vendor/symfony//*
+file:vendor/symfony-cmf//*
+file:vendor/twig//*
+file:vendor/guzzlehttp//*
+file:vendor/symfony
+file:vendor/symfony-cmf
+file:vendor/twig
+file:vendor/guzzlehttp)&&!(file:webroot/*/Tests//*
+file:webroot/*/Tests
+file:webroot/*/tests//*
+file:webroot/*/tests
+file:webroot/*/Test//*
+file:webroot/*/Test
+file:webroot/*/test//*
+file:webroot/*/test&&!file:webroot/libraries//*
+file:vendor/*/Tests//*
+file:vendor/*/Tests)
 
 Drupal CLIs #47687F
-file:vendor/drush//*||file:vendor/drush||file:vendor/consolidation//*||file:vendor/consolidation||file:vendor/drupal/console||file:vendor/drupal/console//*
+file:vendor/drush//*
+file:vendor/drush
+file:vendor/consolidation//*
+file:vendor/consolidation
+file:vendor/drupal/console
+file:vendor/drupal/console//*
 
 Libraries #51437F
-file:webroot/profiles/**/libraries//*||file:vendor||file:vendor//*||file:webroot/libraries//*||file:webroot/libraries||file:webroot/vendor||file:webroot/vendor//*
+file:webroot/profiles/**/libraries//*
+file:vendor
+file:vendor//*
+file:webroot/libraries//*
+file:webroot/libraries
+file:webroot/vendor
+file:webroot/vendor//*
 
 (Tests #1D1D3B ? A spare blue (based off of drush): #28679F)
