@@ -10,9 +10,10 @@
         <keyMapSelect mapIndex="0">
             <modifier keys="command?"/>
             <modifier keys="anyShift caps? command"/>
+            <modifier keys="anyShift caps"/>
         </keyMapSelect>
         <keyMapSelect mapIndex="1">
-            <modifier keys="anyShift caps?"/>
+            <modifier keys="anyShift"/>
         </keyMapSelect>
         <keyMapSelect mapIndex="2">
             <modifier keys="caps command?"/>
