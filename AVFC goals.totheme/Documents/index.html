@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<style type="text/css">
+.centered
+{
+   width: 1600px;
+   height: 900px;
+   margin: 0 auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="centered">
+<iframe id="randomize" width="1600" height="900" data-src="https://www.youtube.com/embed?listType=playlist&amp;list=PLiR0-7AEE2Ho0kh8a36nyGDwmLNlpG540&amp;autoplay=1&amp;loop=1&amp;index=" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<script>
+  var iframe = document.getElementById('randomize');
+  var src = iframe.getAttribute('data-src');
+  iframe.setAttribute('src', src + Math.floor(Math.random() * 59));
+</script>
+</body>
+
+</html>
+
