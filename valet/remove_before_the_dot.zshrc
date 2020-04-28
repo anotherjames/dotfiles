@@ -48,7 +48,8 @@ eval "$(nodenv init -)"
 
 export PATH=bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
 
-COMPOSER_EXIT_ON_PATCH_FAILURE=1
+export COMPOSER_EXIT_ON_PATCH_FAILURE=1
+export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
 
 # Add versions of PHP for valet:
 # @TODO Make this dynamic according to the version to currently use.
