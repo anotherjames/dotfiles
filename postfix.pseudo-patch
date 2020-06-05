@@ -1,0 +1,2 @@
++ # This line should be added to /private/etc/postfix/main.cf
++ default_transport = error:No outside emails.

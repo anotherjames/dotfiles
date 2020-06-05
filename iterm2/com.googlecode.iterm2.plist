@@ -36,6 +36,13 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x72-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>13</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
@@ -183,10 +190,12 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSWindow Frame NSColorPanel</key>
+	<string>0 163 224 275 0 0 1920 1177 </string>
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>560 566 799 448 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>140 181 1201 929 0 0 1920 1177 </string>
+	<string>1920 633 1201 929 1920 -358 1200 1920 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>247 132 1201 929 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
@@ -813,15 +822,17 @@
 	<key>NoSyncInstallationId</key>
 	<string>E21FA5D5-B6E7-46A8-B373-DC97C01A181C</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>8</integer>
+	<integer>11</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
-	<real>609240792.98827696</real>
+	<real>609753992.17731094</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
 	<true/>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncRecordedVariables</key>
 	<dict>
 		<key>0</key>
@@ -1578,7 +1589,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-20T09:33:22Z</date>
+	<date>2020-04-28T08:29:39Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
