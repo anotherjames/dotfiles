@@ -1,0 +1,27 @@
+{
+    "require": {
+        "weprovide/valet-plus": "^2.0",
+        "drush/drush": "^8.3.2",
+        "mglaman/drupalorg-cli": "^0.2.0",
+        "cweagans/composer-patches": "^1.6"
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.2.31"
+        }
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true,
+        "patchLevel": {
+            "weprovide/valet-plus": "-p1"
+        },
+        "patches": {
+            "weprovide/valet-plus": {
+                "Increase allowed header size": "https://raw.githubusercontent.com/anotherjames/dotfiles/master/valet-plus/fastcgi_params.patch"
+            }
+        }
+    },
+    "prefer-stable" : true
+}
