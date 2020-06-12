@@ -3,6 +3,8 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "mongodb/brew"
+tap "tideways/profiler"
 brew "composer"
 brew "dnsmasq", restart_service: true
 brew "geoip"
@@ -19,5 +21,6 @@ brew "wp-cli"
 brew "zlib"
 brew "henkrehorst/php/valet-php@7.1"
 brew "henkrehorst/php/valet-php@7.2", link: true
-brew "henkrehorst/php/valet-php@7.3", link: true
+brew "henkrehorst/php/valet-php@7.3"
 brew "henkrehorst/php/valet-php@7.4"
+brew "mongodb/brew/mongodb-community"
