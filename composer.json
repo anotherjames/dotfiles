@@ -19,7 +19,7 @@
         },
         "patches": {
             "weprovide/valet-plus": {
-                "Increase allowed header size": "https://raw.githubusercontent.com/anotherjames/dotfiles/master/valet-plus/fastcgi_params.patch"
+                "Tweaks for performance & Drupal": "https://raw.githubusercontent.com/anotherjames/dotfiles/main/valet-plus/valet-plus-drupal-tweaks.patch"
             }
         }
     },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "625fcc8738808e1df83ac7fe646fbca2",
+    "content-hash": "4304af50cab1dce32c0c93e96e7b1d72",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -3035,7 +3035,7 @@
             "type": "library",
             "extra": {
                 "patches_applied": {
-                    "Increase allowed header size": "https://raw.githubusercontent.com/anotherjames/dotfiles/master/valet-plus/fastcgi_params.patch"
+                    "Tweaks for performance & Drupal": "https://raw.githubusercontent.com/anotherjames/dotfiles/main/valet-plus/valet-plus-drupal-tweaks.patch"
                 }
             },
             "autoload": {
