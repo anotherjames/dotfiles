@@ -4,4 +4,5 @@ password=password-goes-here
 
 [mysqld]
 innodb_file_per_table=ON
+table_open_cache=750
 
