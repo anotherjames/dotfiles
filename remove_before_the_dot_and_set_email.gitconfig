@@ -8,7 +8,7 @@
 	trustExitCode = true
 [user]
 	name = James Williams
-	email = james.williams@computerminds.co.uk
+	email = james.williams@example.com
 [push]
        default = tracking
 [branch]
