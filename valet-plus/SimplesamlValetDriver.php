@@ -29,8 +29,14 @@ class SimplesamlValetDriver extends BasicValetDriver
     $_SERVER['SERVER_ADDR'] = '127.0.0.1';
     $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
     preg_match( '#^(/simplesaml/[^\.]+\.php)(.*)#', $uri, $matches );
-    $_SERVER['PATH_INFO'] = $matches[2];
-    return $sitePath . $matches[1];
+    if ($matches) {
+      $_SERVER['PATH_INFO'] = $matches[2];
+      return $sitePath . $matches[1];
+    }
+    else {
+      $_SERVER['PATH_INFO'] = '';
+      return $sitePath . '/simplesaml/index.php';
+    }
   }
 
   /**
