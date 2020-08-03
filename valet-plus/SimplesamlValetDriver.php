@@ -28,7 +28,7 @@ class SimplesamlValetDriver extends BasicValetDriver
     $_SERVER['PHP_SELF']    = $uri;
     $_SERVER['SERVER_ADDR'] = '127.0.0.1';
     $_SERVER['SERVER_NAME'] = $_SERVER['HTTP_HOST'];
-    preg_match( '#^/simplesaml(/[^\.]+\.php)(.*)#', $uri, $matches );
+    preg_match( '#^(/simplesaml/[^\.]+\.php)(.*)#', $uri, $matches );
     $_SERVER['PATH_INFO'] = $matches[2];
     return $sitePath . $matches[1];
   }
@@ -43,7 +43,7 @@ class SimplesamlValetDriver extends BasicValetDriver
    */
   public function isStaticFile($sitePath, $siteName, $uri)
   {
-    if ($this->isActualFile($staticFilePath = $sitePath . substr($uri, 11))) {
+    if ($this->isActualFile($staticFilePath = $sitePath . $uri)) {
       return $staticFilePath;
     }
 
