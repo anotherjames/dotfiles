@@ -44,7 +44,7 @@ unsetopt correct_all
 # Customize to your needs...
 export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"
 
 eval "$(rbenv init -)"
 eval "$(nodenv init -)"
@@ -56,15 +56,22 @@ export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
 
 # Add versions of PHP for valet:
 # @TODO Make this dynamic according to the version to currently use.
-export PATH="/usr/local/opt/valet-php@7.2/bin:$PATH"
-export PATH="/usr/local/opt/valet-php@7.2/sbin:$PATH"
+#export PATH="/usr/local/opt/valet-php@7.2/bin:$PATH"
+#export PATH="/usr/local/opt/valet-php@7.2/sbin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 #export PATH="/usr/local/opt/valet-php@7.1/bin:$PATH"
 #export PATH="/usr/local/opt/valet-php@7.1/sbin:$PATH"
 #export PATH="/usr/local/opt/valet-php@7.3/bin:$PATH"
 #export PATH="/usr/local/opt/valet-php@7.3/sbin:$PATH"
-#export PATH="/usr/local/opt/valet-php@7.4/bin:$PATH"
-#export PATH="/usr/local/opt/valet-php@7.4/sbin:$PATH"
+export PATH="/usr/local/opt/valet-php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/valet-php@7.4/sbin:$PATH"
+#export PATH="/usr/local/opt/valet-php@5.6/bin:$PATH"
+#export PATH="/usr/local/opt/valet-php@5.6/sbin:$PATH"
+
+# Included in an attempt to get `rbenv exec gem install bundler` working
+export LDFLAGS="-L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 function blt() {
   if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
