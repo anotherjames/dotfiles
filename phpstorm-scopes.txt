@@ -88,7 +88,8 @@ file:webroot/profiles/PROFILEDIR/themes/contrib//*
 file:webroot/profiles/PROFILEDIR/modules/development//*
 file:webroot/profiles/**/libraries//*
 file:drush/contrib
-file:vendor)
+file:vendor)&&(file[PROJECTNAME]:*
+file[PROJECTNAME]:*//*)
 
 
 Contrib #7F3F00
