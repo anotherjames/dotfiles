@@ -42,11 +42,13 @@ setopt nocorrectall
 unsetopt correct_all
 
 # Customize to your needs...
+#export PATH=$HOME/.phpenv/bin:$HOME/.phpenv/plugins/php-build/bin:$PATH
 export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"
 
 eval "$(rbenv init -)"
+#eval "$(phpenv init -)"
 eval "$(nodenv init -)"
 
 export PATH=bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
@@ -94,3 +96,7 @@ function blt() {
     return 1
   fi
 }
+
+# BEGIN SNIPPET: Platform.sh CLI configuration
+export PATH="$HOME/"'.platformsh/bin':"$PATH"
+if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
