@@ -75,6 +75,8 @@ export LDFLAGS="-L/usr/local/opt/zlib/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include"
 export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 function blt() {
   if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
     PROJECT_ROOT="/var/www/html/${AH_SITE_GROUP}.${AH_SITE_ENVIRONMENT}"
