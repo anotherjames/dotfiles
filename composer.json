@@ -3,13 +3,13 @@
         "composer-runtime-api": "^2",
         "cweagans/composer-patches": "^1.7.0",
         "drush/drush": "^8.3.2",
-        "mglaman/drupalorg-cli": "^0.2.0",
-        "weprovide/valet-plus": "^2.0"
+        "mglaman/drupalorg-cli": "^0.3.0",
+        "weprovide/valet-plus": "^2.2.0"
     },
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "7.3.18"
+            "php": "7.4.28"
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
@@ -24,8 +24,8 @@
         },
         "patches": {
             "weprovide/valet-plus": {
-                "Tweaks for performance & Drupal": "https://raw.githubusercontent.com/anotherjames/dotfiles/main/valet-plus/valet-plus-drupal-tweaks.patch",
-                "Fix with Brew ^2.7": "https://patch-diff.githubusercontent.com/raw/weprovide/valet-plus/pull/554.patch"
+                "Support PHP 8.1": "https://github.com/weprovide/valet-plus/commit/ed0cb10bf3d03eb08359df5527fadee2ad937a46.patch",
+                "Tweaks for performance & Drupal": "https://raw.githubusercontent.com/anotherjames/dotfiles/main/valet-plus/valet-plus-drupal-tweaks.patch"
             }
         }
     },
