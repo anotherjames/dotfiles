@@ -2,6 +2,7 @@
     "require": {
         "composer-runtime-api": "^2",
         "cweagans/composer-patches": "^1.7.0",
+        "davidrjonas/composer-lock-diff": "^1.0",
         "drush/drush": "^8.3.2",
         "mglaman/drupalorg-cli": "^0.3.0",
         "weprovide/valet-plus": "^2.2.0"
@@ -9,7 +10,7 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "7.4.28"
+            "php": "8.1.4"
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
