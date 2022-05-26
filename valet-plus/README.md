@@ -44,11 +44,11 @@ Make sure a valet-php package is properly uninstalled before trying to replace i
 
 | Service name | Sudo or not |
 | ------------ | ----------- |
-| dnsmasq | sudo (correct?) |
-| mailhog | sudo (correct?) |
+| dnsmasq | sudo (probably correct) |
+| mailhog | sudo (though probably shouldn't be) |
 | mysql | not |
 | nginx | sudo |
-| solr | not (yet ran as root?) |
+| solr | not (even so, it currently runs as root for me) |
 | valet-php | sudo (correct?) |
 
 Since my global composer.json now sets the platform PHP version to 7.4, if using an older version of PHP, it can be worth running `composer global install --ignore-platform-req=php` to allow any compatible globally-required packages (e.g. the global drush 8) to be installed/run. (And obviously, switch back to >= 7.4 for global packages that _do_ need at least 7.4.)
