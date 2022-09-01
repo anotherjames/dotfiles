@@ -10,7 +10,7 @@ ZSH_THEME="jamescrunch"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lcomposer="/usr/local/bin/composer"
+#alias lcomposer="/usr/local/bin/composer"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -46,9 +46,9 @@ unsetopt correct_all
 #export PATH=$HOME/.phpenv/bin:$HOME/.phpenv/plugins/php-build/bin:$PATH
 export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"
+#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"
 
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 #eval "$(phpenv init -)"
 eval "$(nodenv init -)"
 
@@ -58,40 +58,25 @@ export COMPOSER_EXIT_ON_PATCH_FAILURE=1
 export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
 
 # Add versions of PHP for valet:
-VALET_PHP="7.4"
-export PATH="/usr/local/opt/valet-php@$VALET_PHP/bin:$PATH"
-export PATH="/usr/local/opt/valet-php@$VALET_PHP/sbin:$PATH"
+#VALET_PHP="7.4"
+#export PATH="/usr/local/opt/valet-php@$VALET_PHP/bin:$PATH"
+#export PATH="/usr/local/opt/valet-php@$VALET_PHP/sbin:$PATH"
 
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# Use mamp pro's version of PHP (currently hardcoded to 7.4.21), as advised by CM's mamp pro guide.
+export PATH=/Applications/MAMP/bin/php/php7.4.21/bin:$PATH
+alias php='/Applications/MAMP/bin/php/php7.4.21/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php7.4.21.ini"'
+export PHPRC="/Library/Application Support/appsolute/MAMP PRO/conf/php7.4.21.ini"
+# Plus everything else that it provides/uses, e.g. mysql. @TODO: Maybe we could use its python too?!
+export PATH=/Applications/MAMP/Library/bin:$PATH
+
+#export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # Included in an attempt to get `rbenv exec gem install bundler` working
-export LDFLAGS="-L/usr/local/opt/zlib/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include"
-export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+#export LDFLAGS="-L/usr/local/opt/zlib/lib"
+#export CPPFLAGS="-I/usr/local/opt/zlib/include"
+#export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-function blt() {
-  if [[ ! -z ${AH_SITE_ENVIRONMENT} ]]; then
-    PROJECT_ROOT="/var/www/html/${AH_SITE_GROUP}.${AH_SITE_ENVIRONMENT}"
-  elif [ "`git rev-parse --show-cdup 2> /dev/null`" != "" ]; then
-    PROJECT_ROOT=$(git rev-parse --show-cdup)
-  else
-    PROJECT_ROOT="."
-  fi
-
-  if [ -f "$PROJECT_ROOT/vendor/bin/blt" ]; then
-    $PROJECT_ROOT/vendor/bin/blt "$@"
-
-  # Check for local BLT.
-  elif [ -f "./vendor/bin/blt" ]; then
-    ./vendor/bin/blt "$@"
-
-  else
-    echo "You must run this command from within a BLT-generated project."
-    return 1
-  fi
-}
 
 # BEGIN SNIPPET: Platform.sh CLI configuration
 export PATH="$HOME/"'.platformsh/bin':"$PATH"
