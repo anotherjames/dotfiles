@@ -64,10 +64,7 @@ export PATH="/Applications/MAMP/bin/php/php$MY_MAMP_PRO_PHP_VERSION/bin:$PATH"
 alias php='/Applications/MAMP/bin/php/php$MY_MAMP_PRO_PHP_VERSION/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php$MY_MAMP_PRO_PHP_VERSION.ini"'
 export PHPRC="/Library/Application Support/appsolute/MAMP PRO/conf/php$MY_MAMP_PRO_PHP_VERSION.ini"
 # Plus everything else that mamp pro provides/uses, e.g. mysql.
-export PATH=/Applications/MAMP/Library/bin:$PATH
-
-export PATH="/usr/local/opt/valet-php@$MY_MAMP_PRO_PHP_VERSION/bin:$PATH"
-export PATH="/usr/local/opt/valet-php@$MY_MAMP_PRO_PHP_VERSION/sbin:$PATH"
+export PATH=$PATH:/Applications/MAMP/Library/bin
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
