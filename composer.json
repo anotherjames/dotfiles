@@ -4,8 +4,7 @@
         "cweagans/composer-patches": "^1.7.0",
         "davidrjonas/composer-lock-diff": "^1.0",
         "drush/drush": "^8.3.2",
-        "mglaman/drupalorg-cli": "^0.3.0",
-        "weprovide/valet-plus": "^2.2.0"
+        "mglaman/drupalorg-cli": "^0.3.0"
     },
     "config": {
         "sort-packages": true,
@@ -21,13 +20,8 @@
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "patchLevel": {
-            "weprovide/valet-plus": "-p1"
         },
         "patches": {
-            "weprovide/valet-plus": {
-                "Support PHP 8.1": "https://github.com/weprovide/valet-plus/commit/ed0cb10bf3d03eb08359df5527fadee2ad937a46.patch",
-                "Tweaks for performance & Drupal": "https://raw.githubusercontent.com/anotherjames/dotfiles/main/valet-plus/valet-plus-drupal-tweaks.patch"
-            }
         }
     },
     "prefer-stable" : true
