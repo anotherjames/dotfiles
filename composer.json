@@ -1,10 +1,11 @@
 {
     "require": {
         "composer-runtime-api": "^2",
-        "cweagans/composer-patches": "^1.7.0",
+        "cweagans/composer-patches": "^1.7.3",
         "davidrjonas/composer-lock-diff": "^1.0",
         "drush/drush": "^8.3.2",
-        "mglaman/drupalorg-cli": "^0.3.0"
+        "mglaman/drupalorg-cli": "^0.3.0",
+        "szeidler/composer-patches-cli": "^1.0"
     },
     "config": {
         "sort-packages": true,
@@ -13,7 +14,8 @@
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "szeidler/composer-patches-cli": true
         }
     },
     "extra": {
