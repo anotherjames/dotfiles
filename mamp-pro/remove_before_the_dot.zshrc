@@ -7,10 +7,6 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="jamescrunch"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Add an alias for a global composer, which we can easily use ahead of any
 # project-specific composer. This is necessary because our $PATH would pick the
 # project-specific composer script first.
@@ -52,19 +48,13 @@ export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
 
 #eval "$(phpenv init -)"
 eval "$(nodenv init -)"
+eval "$(pyenv init -)"
 
-export PATH=bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=$HOME/.pyenv/shims:bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH="$HOME/.mampenv/bin:$PATH"
 
 export COMPOSER_EXIT_ON_PATCH_FAILURE=1
 export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
-
-# Use mamp pro's version of PHP, as advised by CM's mamp pro guide.
-MY_MAMP_PRO_PHP_VERSION="7.4.21"
-export PATH="/Applications/MAMP/bin/php/php$MY_MAMP_PRO_PHP_VERSION/bin:$PATH"
-alias php='/Applications/MAMP/bin/php/php$MY_MAMP_PRO_PHP_VERSION/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php$MY_MAMP_PRO_PHP_VERSION.ini"'
-export PHPRC="/Library/Application Support/appsolute/MAMP PRO/conf/php$MY_MAMP_PRO_PHP_VERSION.ini"
-# Plus everything else that mamp pro provides/uses, e.g. mysql.
-export PATH=$PATH:/Applications/MAMP/Library/bin
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
