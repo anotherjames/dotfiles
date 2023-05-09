@@ -4,18 +4,16 @@
         "cweagans/composer-patches": "^1.7.3",
         "davidrjonas/composer-lock-diff": "^1.0",
         "drush/drush": "^8.3.2",
-        "mglaman/drupalorg-cli": "^0.3.0",
-        "szeidler/composer-patches-cli": "^1.0"
+        "mglaman/drupalorg-cli": "^0.3.0"
     },
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "8.1.4"
+            "php": "7.4.30"
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "cweagans/composer-patches": true,
-            "szeidler/composer-patches-cli": true
+            "cweagans/composer-patches": true
         }
     },
     "extra": {
