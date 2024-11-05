@@ -7,7 +7,7 @@
 	<key>CopySelection</key>
 	<false/>
 	<key>Default Arrangement Name</key>
-	<string>JW normal</string>
+	<string>Default</string>
 	<key>Default Bookmark Guid</key>
 	<string>D5435B79-890B-45D9-9365-2AF883BC0ECA</string>
 	<key>EnableAPIServer</key>
@@ -800,7 +800,7 @@
 	<false/>
 	<key>Window Arrangements</key>
 	<dict>
-		<key>JW normal</key>
+		<key>Default</key>
 		<array>
 			<dict>
 				<key>Desired Columns</key>
@@ -810,7 +810,7 @@
 				<key>Has Toolbelt</key>
 				<false/>
 				<key>Height</key>
-				<real>960</real>
+				<real>929</real>
 				<key>Hide After Opening</key>
 				<false/>
 				<key>Hiding Toolbelt Should Resize Window</key>
@@ -833,7 +833,7 @@
 						<key>Root</key>
 						<dict>
 							<key>Splitter ID</key>
-							<string>53A322BD-D5CF-44B8-9E5E-45EC151E209D</string>
+							<string>2E51C18C-6299-46E1-945B-5604A1B487E1</string>
 							<key>Subviews</key>
 							<array>
 								<dict>
@@ -1073,7 +1073,7 @@
 												<real>0.73333334922790527</real>
 											</dict>
 											<key>Guid</key>
-											<string>CBC8DA0F-0E0B-4D88-8769-1C279FCF63D8</string>
+											<string>1CD6B8A6-55B6-474E-959E-496FD4511A55</string>
 											<key>Horizontal Spacing</key>
 											<real>1</real>
 											<key>Icon</key>
@@ -1454,7 +1454,7 @@
 											<string>/Users/jameswilliams</string>
 										</dict>
 										<key>Columns</key>
-										<integer>167</integer>
+										<integer>168</integer>
 										<key>Commands</key>
 										<array/>
 										<key>Directories</key>
@@ -1493,9 +1493,9 @@
 											<string>Shell Launcher</string>
 										</dict>
 										<key>Rows</key>
-										<integer>54</integer>
+										<integer>53</integer>
 										<key>Session GUID</key>
-										<string>0A831597-3CAE-4A5F-B40C-912D8B50AC2C</string>
+										<string>E6B500DF-5A82-4E7C-B53F-8A47A10DB5A8</string>
 										<key>Short Lived Single Use</key>
 										<false/>
 										<key>Should Expect Current Dir Updates</key>
@@ -1517,9 +1517,9 @@
 									<key>frame</key>
 									<dict>
 										<key>height</key>
-										<real>936</real>
+										<real>905</real>
 										<key>width</key>
-										<real>1200</real>
+										<real>1201</real>
 										<key>x</key>
 										<real>0.0</real>
 										<key>y</key>
@@ -1532,9 +1532,9 @@
 							<key>frame</key>
 							<dict>
 								<key>height</key>
-								<real>936</real>
+								<real>905</real>
 								<key>width</key>
-								<real>1200</real>
+								<real>1201</real>
 								<key>x</key>
 								<real>0.0</real>
 								<key>y</key>
@@ -1544,11 +1544,11 @@
 							<false/>
 						</dict>
 						<key>Tab GUID</key>
-						<string>04A9C011-4BD8-4F10-91EE-7F965F86D6E5</string>
+						<string>89A762E3-08CF-43C4-B624-FA6AB21F6169</string>
 					</dict>
 				</array>
 				<key>TerminalGuid</key>
-				<string>pty-41A7DF7E-C50A-432B-AB2B-40C810C6CD42</string>
+				<string>pty-672F6D2E-487A-4AFC-8E0E-2113289894DE</string>
 				<key>Toolbelt</key>
 				<dict>
 					<key>Profiles</key>
@@ -1577,13 +1577,13 @@
 				<key>Use Transparency</key>
 				<true/>
 				<key>Width</key>
-				<real>1200</real>
+				<real>1201</real>
 				<key>Window Type</key>
 				<integer>12</integer>
 				<key>X Origin</key>
-				<real>1920</real>
+				<real>-1200</real>
 				<key>Y Origin</key>
-				<real>602</real>
+				<real>634</real>
 			</dict>
 		</array>
 	</dict>
