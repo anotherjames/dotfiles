@@ -59,5 +59,6 @@ export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # BEGIN SNIPPET: Platform.sh CLI configuration
+HOME=${HOME:-'/Users/jameswilliams'}
 export PATH="$HOME/"'.platformsh/bin':"$PATH"
 if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET

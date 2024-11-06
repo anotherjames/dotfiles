@@ -16,3 +16,9 @@
        autosetuprebase = always
 [init]
        templatedir = ~/.git_template
+[url "https://github"]
+	insteadOf = git://github
+[fetch]
+	prune = true
+[diff]
+	colorMoved = true
