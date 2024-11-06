@@ -1,4 +1,0 @@
-sites: "sites"
-databases: "databases"
-drush_installed: true
-drush_branch: '7.x'
