@@ -34,7 +34,8 @@ bgnotify_threshold=15
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git compleat git-flow extract history-substring-search last-working-dir drush bgnotify)
+plugins=(history-substring-search last-working-dir drush bgnotify)
+# Plugins previously enabled: git compleat extract
 
 source $ZSH/oh-my-zsh.sh
 
@@ -48,15 +49,24 @@ unsetopt correct_all
 #export PATH=$HOME/.phpenv/bin:$HOME/.phpenv/plugins/php-build/bin:$PATH
 export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
 
+#export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1) --with-readline-dir=$(brew --prefix readline) --with-libyaml-dir=$(brew --prefix libyaml) --with-zlib-dir=$(brew --prefix zlib)"
+
+#eval "$(rbenv init -)"
 #eval "$(phpenv init -)"
 eval "$(nodenv init -)"
 eval "$(pyenv init -)"
 
-export PATH=$HOME/.pyenv/shims:bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
-export PATH="$HOME/.mampenv/bin:$PATH"
+export PATH=$HOME/.pyenv/shims:bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$HOME/.mampenv/bin:$PATH
 
 export COMPOSER_EXIT_ON_PATCH_FAILURE=1
 export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
+
+#export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+
+# Included in an attempt to get `rbenv exec gem install bundler` working
+#export LDFLAGS="-L/usr/local/opt/zlib/lib"
+#export CPPFLAGS="-I/usr/local/opt/zlib/include"
+#export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 
