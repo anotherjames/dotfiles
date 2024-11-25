@@ -796,6 +796,8 @@
 	<true/>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
@@ -1460,8 +1462,7 @@
 										<key>Commands</key>
 										<array/>
 										<key>Directories</key>
-										<array>
-										</array>
+										<array/>
 										<key>Environment</key>
 										<dict>
 											<key>PWD</key>
