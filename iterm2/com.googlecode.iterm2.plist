@@ -1461,7 +1461,6 @@
 										<array/>
 										<key>Directories</key>
 										<array>
-											<string>/Users/jameswilliams/sites/gst</string>
 										</array>
 										<key>Environment</key>
 										<dict>
@@ -1509,8 +1508,6 @@
 											<key>$$$$</key>
 											<string>$$</string>
 										</dict>
-										<key>Working Directory</key>
-										<string>/Users/jameswilliams/sites/gst</string>
 										<key>Working Directory Poller Disabled</key>
 										<false/>
 									</dict>
