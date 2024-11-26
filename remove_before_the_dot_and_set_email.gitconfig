@@ -9,6 +9,7 @@
 [user]
 	name = James Williams
 	email = james.williams@example.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVwnPLWiL1V7igiCXpqM3KEVbxy09890uomfViuOixl
 [push]
        default = tracking
 [branch]
@@ -22,3 +23,9 @@
 	prune = true
 [diff]
 	colorMoved = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
