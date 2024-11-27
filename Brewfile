@@ -7,6 +7,8 @@ brew "composer"
 brew "docker", link: false
 brew "gpatch"
 brew "jq"
+brew "node"
+brew "nodenv"
 brew "pv"
 brew "wget"
 brew "ddev/ddev/ddev"
