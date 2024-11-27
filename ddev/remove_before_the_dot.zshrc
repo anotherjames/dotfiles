@@ -10,7 +10,7 @@ ZSH_THEME="jamescrunch"
 # Add an alias for a global composer, which we can easily use ahead of any
 # project-specific composer. This is necessary because our $PATH would pick the
 # project-specific composer script first.
-alias gcomposer="/usr/local/bin/composer"
+alias gcomposer="/opt/homebrew/bin/composer"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -35,7 +35,6 @@ bgnotify_threshold=15
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(history-substring-search last-working-dir drush bgnotify)
-# Plugins previously enabled: git compleat extract
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,12 +45,7 @@ setopt nocorrectall
 unsetopt correct_all
 
 # Customize to your needs...
-export PATH=$HOME/.nodenv/bin:$HOME/.nodenv/plugins/node-build/bin:$PATH
-
-eval "$(nodenv init -)"
-eval "$(pyenv init -)"
-
-export PATH=$HOME/.pyenv/shims:bin:./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=./node_modules/.bin:./vendor/bin:$HOME/.composer/vendor/bin:$PATH
 
 export COMPOSER_EXIT_ON_PATCH_FAILURE=1
 export DISABLE_PANTHEON_DRUSH_VERSION_WARNING=1
