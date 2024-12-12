@@ -14,3 +14,7 @@ ehthumbs.db
 /tags
 /.bundle/
 .idea
+
+# At least until https://github.com/ddev/ddev/issues/3878 is resolved:
+/.ddev/config.jw-*.yaml
+/.ddev/docker-compose.jw-*.yaml
