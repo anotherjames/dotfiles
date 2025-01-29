@@ -2,6 +2,7 @@ tap "ddev/ddev"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "platformsh/tap"
+brew "bulk_extractor"
 brew "curl"
 brew "composer"
 brew "docker", link: false
