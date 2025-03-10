@@ -72,6 +72,8 @@ file:config
 file:config//*
 file:.platform
 file:.platform//*
+file:.ddev
+file:.ddev//*
 file:*
 file:drush/*
 file:patches//*
