@@ -1,55 +1,6 @@
 PHPStorm scopes & colours:
 
-Custom #007F00
-((file:profiles/PROFILEDIR
-file:profiles/PROFILEDIR/themes/custom
-file:profiles/PROFILEDIR/themes/custom//*
-file:profiles/PROFILEDIR/modules/custom
-file:profiles/PROFILEDIR/modules/custom//*
-file:profiles/PROFILEDIR//*)&&!(file:profiles/PROFILEDIR/modules/contrib//*
-file:profiles/PROFILEDIR/themes/contrib//*
-file:profiles/PROFILEDIR/modules/development//*)&&!file:profiles/**/libraries//*)
-(file:sites/sites.php
-file:sites/all/patchedmodules.make
-file:sites/all/modules/custom//*
-file:sites/all/modules/custom
-file:sites/all/themes/custom//*
-file:sites/all/themes/custom
-file:sites/SITEDIR
-file:sites/SITEDIR//*&&!(file:sites/SITEDIR/modules/stage_file_proxy
-file:sites/SITEDIR/modules/stage_file_proxy//*
-file:sites/all/modules/custom/devnull
-file:sites/all/modules/custom/devnull//*))
-
-Contrib #7F3F00
-(file:profiles/PROFILEDIR/themes/contrib//*
-file:profiles/PROFILEDIR/modules/contrib//*
-file:profiles/PROFILEDIR/modules/development//*
-file:profiles/PROFILEDIR/themes/contrib
-file:profiles/PROFILEDIR/modules/contrib
-file:profiles/**/libraries//*)
-(file:sites/SITEDIR/modules/stage_file_proxy
-file:sites/SITEDIR/modules/stage_file_proxy//*
-file:sites/all//*
-file:sites/all/modules/custom/devnull
-file:sites/all/modules/custom/devnull//*&&!(file:sites/all/modules/custom
-file:sites/all/modules/custom//*))
-
-Core #007F7F
-file:*/&&!file:offline//*&&!file:.idea//*&&!file:profiles/PROFILEDIR//*&&!file:sites//*
-
-Sites #808000
-file:sites//*
-
-Non-project #7F7F7F
-
-Booking system #204080 (lowest scope, highest colour)
-file:sites/all/modules/custom/booking_system//*
-file:sites/all/modules/custom/booking_system
-
-===================
-
-D8:
+D8+:
 
 Tests (Drupal & dependencies) #40495F
 file:webroot/*/Tests//*
@@ -76,6 +27,9 @@ file:.ddev
 file:.ddev//*
 file:*
 file:drush/*
+file:recipes//*
+file:recipes
+file:patches
 file:patches//*
 file:docker//*
 file:jenkins//*
@@ -164,3 +118,54 @@ file:webroot/vendor
 file:webroot/vendor//*
 
 (Tests #1D1D3B ? A spare blue (based off of drush): #28679F)
+
+===================
+
+D7:
+
+Custom #007F00
+((file:profiles/PROFILEDIR
+file:profiles/PROFILEDIR/themes/custom
+file:profiles/PROFILEDIR/themes/custom//*
+file:profiles/PROFILEDIR/modules/custom
+file:profiles/PROFILEDIR/modules/custom//*
+file:profiles/PROFILEDIR//*)&&!(file:profiles/PROFILEDIR/modules/contrib//*
+file:profiles/PROFILEDIR/themes/contrib//*
+file:profiles/PROFILEDIR/modules/development//*)&&!file:profiles/**/libraries//*)
+(file:sites/sites.php
+file:sites/all/patchedmodules.make
+file:sites/all/modules/custom//*
+file:sites/all/modules/custom
+file:sites/all/themes/custom//*
+file:sites/all/themes/custom
+file:sites/SITEDIR
+file:sites/SITEDIR//*&&!(file:sites/SITEDIR/modules/stage_file_proxy
+file:sites/SITEDIR/modules/stage_file_proxy//*
+file:sites/all/modules/custom/devnull
+file:sites/all/modules/custom/devnull//*))
+
+Contrib #7F3F00
+(file:profiles/PROFILEDIR/themes/contrib//*
+file:profiles/PROFILEDIR/modules/contrib//*
+file:profiles/PROFILEDIR/modules/development//*
+file:profiles/PROFILEDIR/themes/contrib
+file:profiles/PROFILEDIR/modules/contrib
+file:profiles/**/libraries//*)
+(file:sites/SITEDIR/modules/stage_file_proxy
+file:sites/SITEDIR/modules/stage_file_proxy//*
+file:sites/all//*
+file:sites/all/modules/custom/devnull
+file:sites/all/modules/custom/devnull//*&&!(file:sites/all/modules/custom
+file:sites/all/modules/custom//*))
+
+Core #007F7F
+file:*/&&!file:offline//*&&!file:.idea//*&&!file:profiles/PROFILEDIR//*&&!file:sites//*
+
+Sites #808000
+file:sites//*
+
+Non-project #7F7F7F
+
+Booking system #204080 (lowest scope, highest colour)
+file:sites/all/modules/custom/booking_system//*
+file:sites/all/modules/custom/booking_system
