@@ -1,4 +1,4 @@
-autorefresh=0
+autorefresh=1
 showBuildStatus=0
 disablerecursiveoperations=1
 autorefreshremotes=0
