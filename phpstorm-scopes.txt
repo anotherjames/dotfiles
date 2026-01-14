@@ -58,13 +58,14 @@ file:webroot/themes//*
 file:webroot/profiles//*
 file:drush/contrib
 file:drush/contrib//*)&&!((file:webroot/profiles/PROFILEDIR
-file:webroot/profiles/PROFILEDIR//*)&&!(file:webroot/profiles/PROFILEDIR/themes/contrib//*
-file:webroot/profiles/PROFILEDIR/modules/contrib//*
-file:webroot/profiles/PROFILEDIR/modules/development//*
-file:webroot/profiles/PROFILEDIR/themes/contrib//*)&&!(file:webroot/modules/custom
+file:webroot/profiles/PROFILEDIR//*
+file:webroot/modules/custom
 file:webroot/modules/custom//*
 file:webroot/themes/custom
-file:webroot/themes/custom//*))
+file:webroot/themes/custom//*)&&!(file:webroot/profiles/PROFILEDIR/themes/contrib//*
+file:webroot/profiles/PROFILEDIR/modules/contrib//*
+file:webroot/profiles/PROFILEDIR/modules/development//*
+file:webroot/profiles/PROFILEDIR/themes/contrib//*))
 
 Core #007F7F
 (file:webroot/core//*
