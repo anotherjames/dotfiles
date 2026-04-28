@@ -2,8 +2,7 @@
     "require": {
         "composer-runtime-api": "^2",
         "cweagans/composer-patches": "^1.7.3",
-        "davidrjonas/composer-lock-diff": "^1.0",
-        "mglaman/drupalorg-cli": "^0.5"
+        "davidrjonas/composer-lock-diff": "^1.0"
     },
     "config": {
         "sort-packages": true,
