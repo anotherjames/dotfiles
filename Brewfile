@@ -6,6 +6,8 @@ tap "upsun/tap"
 brew "bulk_extractor"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# TIFF library and utilities
+brew "libtiff"
 # Postgres C API library
 brew "libpq"
 # Dependency Manager for PHP
