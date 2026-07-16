@@ -16,6 +16,8 @@ brew "docker", link: false
 brew "gpatch"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Simple tool to make locally trusted development certificates
+brew "mkcert"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Node.js version manager
@@ -34,3 +36,5 @@ cask "1password-cli"
 cask "docker-desktop"
 # Collaboration platform for API development
 cask "postman"
+# Connect to Windows
+cask "windows-app"
