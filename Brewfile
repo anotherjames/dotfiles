@@ -2,6 +2,8 @@ tap "ddev/ddev"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "upsun/tap"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # Stream-based forensics tool
 brew "bulk_extractor"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -14,6 +16,8 @@ brew "libpq"
 brew "composer"
 # Pack, ship and run any application as a lightweight container
 brew "docker", link: false
+# GitHub command-line tool
+brew "gh"
 # Apply a diff file to an original
 brew "gpatch"
 # Lightweight and flexible command-line JSON processor
