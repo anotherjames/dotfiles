@@ -5,6 +5,7 @@
 - Keep consistency with approaches and coding style in existing custom code
 - Avoid unnecessary changes. Ensure changes to existing pull requests will keep the overall diff of a PR to only change what's necessary.
 - Long-term maintenance and future extensibility are important. For example, any new settings or administrative forms should be useful enough to be extensible in future for other related settings.
+- Any scripts created to complete a task should be kept in the repo root, for inspection and potential future use. Do not just overwrite existing script files when doing something new; make a new script file.
 
 Review all of your code changes yourself to check for unforeseen issues and potential improvements (without unnecessarily increasing scope or functionality), taking time to think like an expert developer (specialising in Drupal, for Drupal projects) who aims for clean code and long term maintainability.
 
@@ -14,10 +15,20 @@ When adding new condition-heavy logic, prefer nested `if` blocks over early retu
 
 (Requiring `drupal/core` or `drupal/core-recommended` in a root `composer.json` file shows a project uses Drupal.)
 
-- Prrefer to work within existing custom modules or the existing custom theme. 
+- Prefer to work within existing custom modules or the existing custom theme.
 - Use Drupal coding standards (documented from https://project.pages.drupalcode.org/coding_standards/)
 - DDEV and Drush are common useful tools
 - Access checks should respect permissions rather than directly checking user roles.
+
+## Database queries
+
+If `$HOME/.my-ro.cnf` exists, a read-only database user (`copilot_ro`, `SELECT` privileges only) should always be used for running database queries directly:
+
+```
+mariadb --defaults-file="$HOME/.my-ro.cnf" -e "SELECT ..."
+```
+
+This avoids the risk of accidentally running destructive statements. If `$HOME/.my-ro.cnf` does not exist, fall back to using drush (when available) or `mariadb`/`mysql`.
 
 ## Git usage
 
