@@ -1,7 +1,12 @@
-/Users/jameswilliams/.ddev/homeadditions/.composer:
-total 0
-lrwxr-xr-x@ 1 jameswilliams  staff  40  5 Feb 09:54 auth.json -> /Users/jameswilliams/.composer/auth.json
+* Directly in the ~/.ddev/homeadditions directory:
+- .gitconfig, adapted to remove stuff in relation to sourcetree, gpg, git_template & 1password. And set excludesfile to `/home/jameswilliams/.gitignore_global`
+- .gitignore_global, without change
 
-/Users/jameswilliams/.ddev/homeadditions/.terminus/cache/tokens:
-total 8
--rw-r--r--@ 1 jameswilliams  staff  121  5 Feb 16:56 redacted@example.com
+* .composer subdir:
+- auth.json -> /Users/jameswilliams/.composer/auth.json
+
+* .copilot subdir:
+- copilot-instructions.md -> /Users/jameswilliams/.copilot/copilot-instructions.md
+
+* .terminus/cache/tokens subdir:
+- The file named for my email, generated inside ddev once connected with terminus once. Move it back to host to make it permanent.
