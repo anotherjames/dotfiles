@@ -19,3 +19,5 @@ ehthumbs.db
 /.ddev/config.jw-*.yaml
 /.ddev/config.*-jw-*.yaml
 /.ddev/docker-compose.jw-*.yaml
+# Ignore DDEV copilot add-on; not everyone will want it.
+/.ddev/**/*copilot*
