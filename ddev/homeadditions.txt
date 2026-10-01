@@ -1,5 +1,5 @@
 * Directly in the ~/.ddev/homeadditions directory:
-- .gitconfig, adapted to remove stuff in relation to sourcetree, gpg, git_template & 1password. And set excludesfile to `/home/jameswilliams/.gitignore_global`
+- .gitconfig, renamed from remove_before_the_dot_and_set_email.gitconfig, and with my actual email set in it
 - .gitignore_global, without change
 
 * .composer subdir:
