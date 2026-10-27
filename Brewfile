@@ -15,7 +15,7 @@ brew "libpq"
 # Dependency Manager for PHP
 brew "composer"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # GitHub command-line tool
 brew "gh"
 # Apply a diff file to an original
@@ -34,10 +34,14 @@ brew "pv"
 brew "redis"
 # Internet file retriever
 brew "wget"
-brew "ddev/ddev/ddev"
-brew "upsun/tap/upsun-cli"
+# DDEV
+brew "ddev/ddev/ddev", trusted: true
+# Upsun CLI
+brew "upsun/tap/upsun-cli", trusted: true
 # Command-line interface for 1Password
 cask "1password-cli"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Collaboration platform for API development

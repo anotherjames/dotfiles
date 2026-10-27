@@ -26,6 +26,8 @@
 	<string>https://api.openai.com/v1/responses</string>
 	<key>AlternateMouseScroll</key>
 	<true/>
+	<key>ClaudeCodeWorkgroupUpsellSuppressed</key>
+	<true/>
 	<key>ClickToSelectCommand</key>
 	<false/>
 	<key>CopySelection</key>
