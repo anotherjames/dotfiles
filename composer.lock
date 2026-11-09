@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "893216e136f402405651e20c50787c02",
+    "content-hash": "2246dfaa2f8c2c7a49ae04c6fc732b0c",
     "packages": [
         {
             "name": "cweagans/composer-patches",
@@ -55,26 +55,43 @@
             "time": "2022-12-20T22:53:13+00:00"
         },
         {
-            "name": "davidrjonas/composer-lock-diff",
-            "version": "1.7.0",
+            "name": "ion-bazan/composer-diff",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/davidrjonas/composer-lock-diff.git",
-                "reference": "3c39a39849e6d235e588c6ae273d97c8785e9008"
+                "url": "https://github.com/IonBazan/composer-diff.git",
+                "reference": "2be6cff4e05988ae683b7221dfe43b2854382a61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davidrjonas/composer-lock-diff/zipball/3c39a39849e6d235e588c6ae273d97c8785e9008",
-                "reference": "3c39a39849e6d235e588c6ae273d97c8785e9008",
+                "url": "https://api.github.com/repos/IonBazan/composer-diff/zipball/2be6cff4e05988ae683b7221dfe43b2854382a61",
+                "reference": "2be6cff4e05988ae683b7221dfe43b2854382a61",
                 "shasum": ""
             },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "ext-json": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "composer/composer": "^2.0",
+                "symfony/console": "^5.4 || ^6.0 || ^7.0 || ^8.0",
+                "symfony/phpunit-bridge": "^5.4.33 || ^6.0 || ^7.0 || ^8.0"
+            },
+            "suggest": {
+                "composer/composer": "To use the binary without composer runtime",
+                "symfony/console": "To use the binary without composer runtime"
+            },
             "bin": [
-                "composer-lock-diff"
+                "composer-diff"
             ],
-            "type": "library",
+            "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                "class": "IonBazan\\ComposerDiff\\Composer\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "IonBazan\\ComposerDiff\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -83,16 +100,32 @@
             ],
             "authors": [
                 {
-                    "name": "David Jonas",
-                    "homepage": "https://github.com/davidrjonas"
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
                 }
             ],
-            "description": "See what has changed after a composer update.",
+            "description": "Compares composer.lock changes and generates Markdown report so you can use it in PR description.",
+            "keywords": [
+                "PullRequest",
+                "composer",
+                "composer.lock",
+                "diff",
+                "github",
+                "markdown",
+                "packages",
+                "packagist"
+            ],
             "support": {
-                "issues": "https://github.com/davidrjonas/composer-lock-diff/issues",
-                "source": "https://github.com/davidrjonas/composer-lock-diff/tree/1.7.0"
+                "issues": "https://github.com/IonBazan/composer-diff/issues",
+                "source": "https://github.com/IonBazan/composer-diff/tree/v2.4.0"
             },
-            "time": "2022-03-11T17:43:07+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/IonBazan",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-05T10:51:37+00:00"
         }
     ],
     "packages-dev": [],

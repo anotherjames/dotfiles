@@ -2,7 +2,7 @@
     "require": {
         "composer-runtime-api": "^2",
         "cweagans/composer-patches": "^1.7.3",
-        "davidrjonas/composer-lock-diff": "^1.0"
+        "ion-bazan/composer-diff": "^2.4"
     },
     "config": {
         "sort-packages": true,
@@ -11,7 +11,8 @@
         },
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "ion-bazan/composer-diff": true
         }
     },
     "extra": {
